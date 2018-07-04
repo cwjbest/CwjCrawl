@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.2.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
+
+    <!--配置自动扫描的包-->
+    <context:component-scan base-package="com.jwc.ssm" use-default-filters="true">
+        <!--配置以下两个选项，让springMVC的IOC容器不适用默认的扫描方式而是
+            只扫描这两个注解
+            对应的，spring的IOC容器不扫描这两个注解，这样就可以完成二者的整合了-->
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+    </context:component-scan>
+
+    <!--配置视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <mvc:view-controller path="/success" view-name="success" />
+    <mvc:annotation-driven />
+
+    <!--default-servlet-handler将在springMVC上下文定义一个DefaultServletHttpRequestHandler。
+       它会对进入DispatcherServlet的请求进行筛查，如果发现是没有经过映射的请求，就将该请求交由
+       WEB应用服务器默认的Servlet处理。如果不是静态资源，才由DispatcherServlet处理
+       一般的WEB服务器默认的额Servlet的名称都是default
+       若不是default，则需要通过显示指定
+   -->
+    <mvc:default-servlet-handler />
+
+    <!--加了上面这句一定要加下面这句，不然之前的@RequestMapping就不能用了 conversion-service="conversionService"-->
+    <mvc:annotation-driven>
+    </mvc:annotation-driven>
+
+
+    <!--配置MultipartResolver,实现文件上传-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8" />
+        <property name="maxUploadSize" value="1024000" />
+    </bean>
+
+</beans>
