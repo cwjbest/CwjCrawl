@@ -15,8 +15,8 @@ import java.util.Locale;
 @Repository
 public class Crawl {
     private int id;
+    private String url;
     private String txHash;
-//    private String age;
     private Date age;
     private String from;
     private String in_or_out;
@@ -29,6 +29,14 @@ public class Crawl {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getTxHash() {
@@ -82,8 +90,9 @@ public class Crawl {
         this.quantity = quantity;
     }
 
-    public Crawl(int id, String txHash, Date age, String from, String in_or_out, String to, String quantity) {
+    public Crawl(int id, String url, String txHash, Date age, String from, String in_or_out, String to, String quantity) {
         this.id = id;
+        this.url = url;
         this.txHash = txHash;
         this.age = age;
         this.from = from;
@@ -97,6 +106,7 @@ public class Crawl {
     public String toString() {
         return "Crawl{" +
                 "id='" + id + '\'' +
+                "url='" + url + '\'' +
                 "txHash='" + txHash + '\'' +
                 ", age='" + age + '\'' +
                 ", from='" + from + '\'' +

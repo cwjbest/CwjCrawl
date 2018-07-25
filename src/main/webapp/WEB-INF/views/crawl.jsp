@@ -102,6 +102,7 @@
         <table class="table table-hover" border="1" cellpadding="10" cellspacing="0">
             <tr class="active">
                 <th>Id</th>
+                <th>Url</th>
                 <th>TxHash</th>
                 <th>Age</th>
                 <th>From</th>
@@ -113,6 +114,7 @@
             <c:forEach items="${requestScope.crawl}" var="player">
                 <tr class="warning">
                     <td>${player.id}</td>
+                    <td>${player.url}</td>
                     <td>${player.txHash}</td>
                     <td>${player.age}</td>
                     <td>${player.from}</td>

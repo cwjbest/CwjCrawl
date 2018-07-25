@@ -102,6 +102,7 @@
         <table class="table table-hover" border="1" cellpadding="10" cellspacing="0">
             <tr class="active">
                 <th>Id</th>
+                <th>Url</th>
                 <th>TxHash</th>
                 <th>Age</th>
                 <th>From</th>
@@ -113,6 +114,7 @@
             <c:forEach items="${requestScope.crawl}" var="player">
                 <tr class="warning">
                     <td>${player.id}</td>
+                    <td>${player.url}</td>
                     <td>${player.txHash}</td>
                     <td>${player.age}</td>
                     <td>${player.from}</td>
@@ -120,7 +122,7 @@
                     <td>${player.to}</td>
                     <td>${player.quantity}</td>
 
-                    <td><a href="/football">修改</a></td>
+                    <%--<td><a href="/football">修改</a></td>--%>
                         <%--&lt;%&ndash;这里有点特殊，Delete操作只能是在POST请求，而普通的超链接只是GET请求--%>
                             <%--我们要借助js来实现它&ndash;%&gt;--%>
                     <%--<td><a class="delete" href="football/${player.id}">删除</a></td>--%>
